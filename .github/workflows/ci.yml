@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Puxar o código do repositório
+      # 1️⃣ Checkout code
       - name: Checkout do código
         uses: actions/checkout@v4
 
-      # 2️⃣ Configurar Node.js
+      # 2️⃣ Set up Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -22,7 +22,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: build/package-lock.json
 
-      # 3️⃣ Instalar dependências
+      # 3️⃣ Install dependencies
       - name: Instalar dependências
         working-directory: build
         run: |
@@ -32,17 +32,25 @@ jobs:
             npm install --legacy-peer-deps
           fi
 
-      # 4️⃣ Gerar build do frontend
+      # 4️⃣ Build frontend
       - name: Build do frontend
         working-directory: build
         run: npm run build
 
-      # 5️⃣ Publicar no GitHub Pages (branch gh-pages)
+      # 5️⃣ Clean up node_modules
+      - name: Clean up node_modules
+        run: rm -rf build/dist/node_modules
+
+      # 6️⃣ Create .nojekyll file
+      - name: Create .nojekyll file
+        run: touch build/dist/.nojekyll
+
+      # 7️⃣ Deploy to GitHub Pages
       - name: Deploy para GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/dist   # <-- Ajuste para o diretório correto do build
+          publish_dir: ./build/dist
           publish_branch: gh-pages
           user_name: github-actions[bot]
           user_email: github-actions[bot]@users.noreply.github.com
