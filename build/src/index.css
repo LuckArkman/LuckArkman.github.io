@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Modern Learning Platform Design System */
+
+@layer base {
+  :root {
+    /* Base colors with modern gradients */
+    --background: 0 0% 99%;
+    --foreground: 222 47% 11%;
+
+    /* Brand colors - Blue to Purple gradient theme */
+    --primary: 243 75% 59%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 251 91% 73%;
+    
+    --secondary: 263 70% 64%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --accent: 324 93% 68%;
+    --accent-foreground: 0 0% 98%;
+    
+    /* Neutral colors */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 243 75% 59%;
+    
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(243, 75%, 59%) 0%, hsl(263, 70%, 64%) 50%, hsl(324, 93%, 68%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0, 0%, 100%) 0%, hsl(220, 14%, 98%) 100%);
+    --gradient-accent: linear-gradient(90deg, hsl(243, 75%, 59%) 0%, hsl(324, 93%, 68%) 100%);
+    
+    /* Shadows */
+    --shadow-elegant: 0 4px 20px -2px hsl(243 75% 59% / 0.1);
+    --shadow-glow: 0 0 40px hsl(243 75% 59% / 0.2);
+    --shadow-card: 0 1px 3px hsl(0 0% 0% / 0.05);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 15 25% 5%;
+    --foreground: 0 0% 98%;
+    
+    --primary: 251 91% 73%;
+    --primary-foreground: 15 25% 5%;
+    
+    --secondary: 263 70% 64%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --accent: 324 93% 68%;
+    --accent-foreground: 0 0% 98%;
+    
+    --muted: 220 14% 12%;
+    --muted-foreground: 220 9% 65%;
+    
+    --card: 15 25% 8%;
+    --card-foreground: 0 0% 98%;
+    
+    --border: 220 13% 18%;
+    --input: 220 13% 18%;
+    --ring: 251 91% 73%;
+    
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Dark theme gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(251, 91%, 73%) 0%, hsl(263, 70%, 64%) 50%, hsl(324, 93%, 68%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(15, 25%, 8%) 0%, hsl(220, 14%, 12%) 100%);
+    --gradient-accent: linear-gradient(90deg, hsl(251, 91%, 73%) 0%, hsl(324, 93%, 68%) 100%);
+    
+    /* Dark shadows */
+    --shadow-elegant: 0 4px 20px -2px hsl(0 0% 0% / 0.4);
+    --shadow-glow: 0 0 40px hsl(251 91% 73% / 0.3);
+    --shadow-card: 0 1px 3px hsl(0 0% 0% / 0.2);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+  }
+}
+
+@layer components {
+  /* Gradient backgrounds */
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+  
+  .bg-gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  /* Custom shadows */
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Glassmorphism effect */
+  .glass {
+    backdrop-filter: blur(16px);
+    background: hsl(var(--card) / 0.8);
+    border: 1px solid hsl(var(--border) / 0.2);
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  /* Hover animations */
+  .hover-scale {
+    @apply transition-smooth hover:scale-105;
+  }
+  
+  .hover-glow {
+    @apply transition-smooth hover:shadow-glow;
+  }
+}
+
+@layer utilities {
+  /* Text gradients */
+  .text-gradient {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
